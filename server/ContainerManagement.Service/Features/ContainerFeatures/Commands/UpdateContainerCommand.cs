@@ -7,7 +7,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ContainerManagement.Service.Features.Commands
+namespace ContainerManagement.Service.Features.ContainerFeatures.Commands
 {
     public class UpdateContainerCommand : IRequest<bool>
     {
@@ -24,7 +24,7 @@ namespace ContainerManagement.Service.Features.Commands
             }
             public async Task<bool> Handle(UpdateContainerCommand request, CancellationToken cancellationToken)
             {
-                var container = _mapper.Map<Containers>(request.ContainerDto);
+                var container = _mapper.Map<Container>(request.ContainerDto);
                 var isSaved = false;
                 if (container != null)
                 {

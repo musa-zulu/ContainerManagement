@@ -1,17 +1,12 @@
 ﻿using AutoMapper;
 using ContainerManagement.Domain.Dtos;
-using ContainerManagement.Domain.Entities;
 using ContainerManagement.Service.Contract;
 using MediatR;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ContainerManagement.Service.Features.Commands
+namespace ContainerManagement.Service.Features.ContainerFeatures.Commands
 {
     public class CreateContainerCommand : IRequest<bool>
     {
@@ -28,7 +23,7 @@ namespace ContainerManagement.Service.Features.Commands
             }
             public async Task<bool> Handle(CreateContainerCommand request, CancellationToken cancellationToken)
             {
-                var container = _mapper.Map<Containers>(request.ContainerDto);
+                var container = _mapper.Map<Domain.Entities.Container>(request.ContainerDto);
                 container.ContainerId = Guid.NewGuid();
                 var containerSaved = false;
                 if (container != null)

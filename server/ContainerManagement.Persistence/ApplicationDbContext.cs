@@ -14,7 +14,8 @@ namespace ContainerManagement.Persistence
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
-        public DbSet<Containers> Containers { get; set; }
+        public DbSet<Container> Containers { get; set; }
+        public DbSet<ContainerType> ContainerTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

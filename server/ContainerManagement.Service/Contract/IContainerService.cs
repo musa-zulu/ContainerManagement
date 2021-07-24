@@ -7,10 +7,10 @@ namespace ContainerManagement.Service.Contract
 {
     public interface IContainerService
     {
-        Task<List<Containers>> GetContainersAsync();
-        Task<bool> CreateContainerAsync(Containers container);
-        Task<Containers> GetContainerByIdAsync(Guid containerId);
-        Task<bool> UpdateContainerAsync(Containers containerToUpdate);
+        Task<List<Container>> GetContainersAsync();
+        Task<bool> CreateContainerAsync(Container container);
+        Task<Container> GetContainerByIdAsync(Guid containerId);
+        Task<bool> UpdateContainerAsync(Container containerToUpdate);
         Task<bool> DeleteContainerAsync(Guid containerId);
     }
 }

@@ -6,7 +6,8 @@ namespace ContainerManagement.Persistence
 {
     public interface IApplicationDbContext
     {
-        DbSet<Containers> Containers { get; set; }
+        DbSet<Container> Containers { get; set; }
+        DbSet<ContainerType> ContainerTypes { get; set; }
         Task<int> SaveChangesAsync();
     }
 }

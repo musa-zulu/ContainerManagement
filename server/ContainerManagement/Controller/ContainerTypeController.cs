@@ -1,6 +1,6 @@
 ﻿using ContainerManagement.Domain.Dtos;
-using ContainerManagement.Service.Features.ContainerFeatures.Commands;
-using ContainerManagement.Service.Features.ContainerFeatures.Queries;
+using ContainerManagement.Service.Features.ContainerTypeFeatures.Commands;
+using ContainerManagement.Service.Features.ContainerTypeFeatures.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 namespace ContainerManagement.Controller
 {
     [ApiController]
-    [Route("api/v{version:apiVersion}/containers")]
+    [Route("api/v{version:apiVersion}/container-types")]
     [ApiVersion("1.0")]
-    public class ContainersController : ControllerBase
+    public class ContainerTypeController : ControllerBase
     {
         private IMediator _mediator;
         public IMediator Mediator
@@ -26,11 +26,11 @@ namespace ContainerManagement.Controller
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] ContainerDto containerDto)
+        public async Task<IActionResult> Create([FromBody] ContainerTypeDto containerTypeDto)
         {
-            CreateContainerCommand command = new()
+            CreateContainerTypeCommand command = new()
             {
-                ContainerDto = containerDto
+                ContainerTypeDto = containerTypeDto
             };
             return Ok(await Mediator.Send(command));
         }
@@ -39,23 +39,23 @@ namespace ContainerManagement.Controller
         [Route("")]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await Mediator.Send(new GetAllContainersQuery()));
+            return Ok(await Mediator.Send(new GetAllContainerTypeQuery()));
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            return Ok(await Mediator.Send(new GetContainerByIdQuery { ContainerId = id }));
+            return Ok(await Mediator.Send(new GetContainerTypeByIdQuery { ContainerTypeId = id }));
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] ContainerDto containerDto)
+        public async Task<IActionResult> Update([FromBody] ContainerTypeDto containerTypeDto)
         {
-            UpdateContainerCommand command = new()
+            UpdateContainerTypeCommand command = new()
             {
-                ContainerDto = containerDto
+                ContainerTypeDto = containerTypeDto
             };
-            if (command.ContainerDto.ContainerId == Guid.Empty)
+            if (command.ContainerTypeDto.ContainerTypeId == Guid.Empty)
             {
                 return BadRequest();
             }
@@ -65,8 +65,7 @@ namespace ContainerManagement.Controller
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            return Ok(await Mediator.Send(new DeleteContainerByIdCommand { ContainerId = id }));
+            return Ok(await Mediator.Send(new DeleteContainerTypesByIdCommand { ContainerTypeId = id }));
         }
-
     }
 }

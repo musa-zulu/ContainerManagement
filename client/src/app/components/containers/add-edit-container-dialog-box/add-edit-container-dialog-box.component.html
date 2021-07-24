@@ -1,0 +1,40 @@
+<h1 mat-dialog-title><strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+    <div class="form-group">
+        <mat-form-field *ngIf="action !== 'Delete'; else elseTemplate">
+            <input #containerNo="ngModel" placeholder="Container No" matInput [(ngModel)]="localData.containerNo" name="containerNo"
+                id="containerNo" type="text" class="form-control" required appearance="fill">
+            <div class="alert alert-danger" *ngIf="containerNo.touched && containerNo.invalid">
+                Container Number is required
+            </div>
+        </mat-form-field>
+    </div>
+    <div class="form-group">
+        <mat-form-field *ngIf="action !== 'Delete'">
+            <input appearance="fill" #color="ngModel" placeholder="Color" matInput
+                [(ngModel)]="localData.color" name="color" id="color" type="text" class="form-control">
+        </mat-form-field>
+    </div>
+    <div class="form-group" *ngIf="action !== 'Delete'">
+        <label for="containerTypeId">Container Type</label>
+        <select #containerTypeId="ngModel" [(ngModel)]="localData.containerTypeId" name="containerTypeId" id="containerTypeId" class="form-control" required>
+          <option value=""></option>
+          <option *ngFor="let c of containerTypes$" [value]="c.containerTypeId">
+            {{ c.type }}
+          </option>
+        </select>
+        <div class="alert alert-danger" *ngIf="containerTypeId.touched && containerTypeId.invalid">
+            Container Type is required.
+        </div>
+      </div>
+    
+    <ng-template #elseTemplate>
+        Are you sure you want to delete the following container? <br><br>
+        <b>{{localData.containerNo}}</b>
+        <br>
+    </ng-template>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="doAction()" mat-flat-button color="primary">Save</button>
+    <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>

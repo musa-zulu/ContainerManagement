@@ -4,7 +4,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ContainerManagement.Service.Features.Commands
+namespace ContainerManagement.Service.Features.ContainerFeatures.Commands
 {
     public class DeleteContainerByIdCommand : IRequest<bool>
     {

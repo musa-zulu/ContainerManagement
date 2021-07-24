@@ -28,6 +28,7 @@ namespace ContainerManagement.Infrastructure.Extension
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new ContainerProfile());
+                mc.AddProfile(new ContainerTypeProfile());
             });
             IMapper mapper = mappingConfig.CreateMapper();
             serviceCollection.AddSingleton(mapper);
@@ -37,6 +38,7 @@ namespace ContainerManagement.Infrastructure.Extension
         {
             serviceCollection.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
             serviceCollection.AddScoped<IContainerService, ContainerService>();
+            serviceCollection.AddScoped<IContainerTypeService, ContainerTypeService>();
         }
 
         public static void AddSwaggerOpenAPI(this IServiceCollection serviceCollection)

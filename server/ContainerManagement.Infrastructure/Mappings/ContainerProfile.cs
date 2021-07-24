@@ -8,7 +8,9 @@ namespace ContainerManagement.Infrastructure.Mappings
     {
         public ContainerProfile()
         {
-            CreateMap<ContainerDto, Containers>().ReverseMap();
+            CreateMap<ContainerDto, Container>()
+                .ForMember(dest => dest.ContainerType, opt =>
+                  opt.Ignore());
         }
     }
 }
