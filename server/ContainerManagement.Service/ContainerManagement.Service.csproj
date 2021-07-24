@@ -10,4 +10,13 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ContainerManagement.Domain\ContainerManagement.Domain.csproj" />
+    <ProjectReference Include="..\ContainerManagement.Persistence\ContainerManagement.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Queries\" />
+  </ItemGroup>
+
 </Project>

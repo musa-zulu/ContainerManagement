@@ -7,6 +7,7 @@ namespace ContainerManagement.Domain.Entities
     {
         [Key]
         public Guid ContainerId { get; set; }
+        [Required]
         public string ContainerNo { get; set; }
         public string Type { get; set; }
         public string Color { get; set; }
