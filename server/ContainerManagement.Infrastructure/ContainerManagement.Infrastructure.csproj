@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ContainerManagement.Domain\ContainerManagement.Domain.csproj" />
     <ProjectReference Include="..\ContainerManagement.Persistence\ContainerManagement.Persistence.csproj" />
+    <ProjectReference Include="..\ContainerManagement.Service\ContainerManagement.Service.csproj" />
   </ItemGroup>
 
 </Project>

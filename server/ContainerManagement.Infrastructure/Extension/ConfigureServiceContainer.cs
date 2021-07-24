@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using ContainerManagement.Infrastructure.Mappings;
 using ContainerManagement.Persistence;
+using ContainerManagement.Service.Contract;
+using ContainerManagement.Service.Implementation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -33,7 +35,8 @@ namespace ContainerManagement.Infrastructure.Extension
 
         public static void AddAddScopedServices(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());            
+            serviceCollection.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+            serviceCollection.AddScoped<IContainerService, ContainerService>();
         }
 
         public static void AddSwaggerOpenAPI(this IServiceCollection serviceCollection)
